@@ -28,6 +28,9 @@
     <ClCompile Include="src\canvas.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\datetime.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h" />
@@ -41,6 +44,9 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="src\canvas.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\datetime.h">
       <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
