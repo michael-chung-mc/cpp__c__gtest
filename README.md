@@ -9,16 +9,17 @@
                 <li><a href="#preview">Preview</li>
             </ul>
         </li>
-        <li><a href="#design">Design</li>
+        <li><a href="#methodology">Methodology</li>
           <ul>
-            <li><a href="#requirements">Tools</li>
+            <li><a href="#requirements">Requirements</li>
+            <li><a href="#design">Design</li>
             <li><a href="#tools">Tools</li>
             <li><a href="#roadmap">Roadmap</li>
           </ul>
         </li>
         <li><a href="#usage">Usage</a>
             <ul>
-                <li><a href="#install">Install</li>
+                <li><a href="#setup">Setup</li>
                 <li><a href="#run">Run</li>
             </ul>
         </li>
@@ -30,26 +31,17 @@
 ### About
 C++ Practice && Unit Testing with Google Test
 ### Preview
-## Design
+## Methodology
 ### Requirements
+### Design
 ### Tools
 * C++
 * GTest
-* Visual Studio 2022
-* Git
-* Windows 10
+* Visual Studio Code
+* Xubuntu
 ### Roadmap
-<details>
-<summary>ray tracer</summary>
-
-- Ray Tracer implemented in C++ following Test Driven Development methodology using GoogleTest
-    - [x] Tuples & Vector & Point & Tuple Operations
-    - [x] Color & Color Operations
-    - [ ] Canvas
-</details>
-
 ## Usage
-### Install
+### Setup
 ### Run
 ## Acnowledgements
 * "Ray Tracer Challenge" by Jamis Buck
