@@ -53,6 +53,7 @@ void Canvas::fill(Color x) {
 
 Color Canvas::getPixel(int x, int y) {
 	if (inBounds(x, y)) { return grid[x][y]; }
+	return Color(0,0,0);
 }
 
 std::string Canvas::getPPM()

@@ -15,4 +15,4 @@ public:
 	};
 };
 
-#endif Comparinator_H
+#endif

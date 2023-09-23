@@ -4,16 +4,17 @@
 
 #pragma once
 
-#include "gtest/gtest.h";
+#include "gtest/gtest.h"
 
-#include <iostream>;
-#include <fstream>;
+#include <iostream>
+#include <fstream>
+#include <cmath>
 
-#include "tuple.h";
-#include "comparinator.h";
-#include "color.h";
-#include "canvas.h";
-#include "datetime.h";
+#include "tuple.h"
+#include "comparinator.h"
+#include "color.h"
+#include "canvas.h"
+#include "datetime.h"
 
 inline std::string getPPMFilename() {
 	return "./data/image.ppm";
