@@ -1,12 +1,16 @@
 #pragma once
-#ifndef Canvas_H
-#define Canvas_H
+#ifndef CANVAS_H
+#define CANVAS_H
+
+class Color;
+#include <vector>
+#include <string>
 
 class Canvas {
 public:
-	int w;
-	int h;
-	std::vector<std::vector<Color>> grid;
+	int mbrWidth;
+	int mbrHeight;
+	std::vector<std::vector<Color>> mbrGrid;
 	Canvas(int width, int height);
 	Color getPixel(int x, int y);
 	std::string getPPM();

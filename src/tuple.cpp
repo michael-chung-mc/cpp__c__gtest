@@ -1,4 +1,7 @@
-#include "pch.h"
+#include "tuple.h"
+#include "comparinator.h"
+#include <cmath>
+#include <iostream>
 
 class Tuple;
 class Point;
@@ -6,91 +9,145 @@ class Vector;
 
 Tuple::Tuple()
 {
-	x = 0;
-	y = 0;
-	z = 0;
-	w = 0;
+	mbrX = 0;
+	mbrY = 0;
+	mbrZ = 0;
+	mbrW = 0;
 }
 Tuple::Tuple(double argx, double argy, double argz, double argw)
 {
-	x = argx;
-	y = argy;
-	z = argz;
-	w = argw;
+	mbrX = argx;
+	mbrY = argy;
+	mbrZ = argz;
+	mbrW = argw;
 };
+Tuple::Tuple(const Tuple &argOther) {
+	mbrX = argOther.mbrX;
+	mbrY = argOther.mbrY;
+	mbrZ = argOther.mbrZ;
+	mbrW = argOther.mbrW;
+}
+Tuple& Tuple::operator=(const Tuple &argOther) {
+	if (this==&argOther) {return *this;}
+	mbrX = argOther.mbrX;
+	mbrY = argOther.mbrY;
+	mbrZ = argOther.mbrZ;
+	mbrW = argOther.mbrW;
+	return *this;
+}
 Tuple Tuple::operator-()
 {
-	return Tuple(-x, -y, -z, -w);
+	return Tuple(-mbrX, -mbrY, -mbrZ, -mbrW);
 }
 
-Tuple Tuple::operator*(float multiple)
+Tuple Tuple::operator*(double multiple)
 {
-	return Tuple(x * multiple, y * multiple, z * multiple, w * multiple);
+	return Tuple(mbrX * multiple, mbrY * multiple, mbrZ * multiple, mbrW * multiple);
 }
-Tuple Tuple::operator/(float multiple)
+Tuple Tuple::operator/(double multiple)
 {
-	return Tuple(x / multiple, y / multiple, z / multiple, w / multiple);
+	return Tuple(mbrX / multiple, mbrY / multiple, mbrZ / multiple, mbrW / multiple);
 }
-Tuple Tuple::operator+(Tuple a)
+Tuple Tuple::operator+(const Tuple &argOther)
 {
-	return Tuple(a.x + x, a.y + y, a.z + z, a.w + w);;
+	return Tuple(argOther.mbrX + mbrX, argOther.mbrY + mbrY, argOther.mbrZ + mbrZ, argOther.mbrW + mbrW);;
 }
-Tuple Tuple::add(Tuple a)
+Tuple Tuple::operator-(const Tuple &argOther)
 {
-	return Tuple(a.x + x, a.y + y, a.z + z, a.w + w);
+	return Tuple(argOther.mbrX - mbrX, argOther.mbrY - mbrY, argOther.mbrZ - mbrZ, argOther.mbrW - mbrW);;
+}
+void Tuple::add(const Tuple &argOther)
+{
+	mbrX += argOther.mbrX;
+	mbrY += argOther.mbrY;
+	mbrZ += argOther.mbrZ;
+	mbrW += argOther.mbrW;
 };
-Tuple Tuple::subtract(Tuple a)
+// Tuple Tuple::add(const Tuple &argOther)
+// {
+// 	return Tuple(argOther.mbrX + mbrX, argOther.mbrY + mbrY, argOther.mbrZ + mbrZ, argOther.mbrW + mbrW);
+// };
+Tuple Tuple::subtract(const Tuple &argOther) const
 {
-	return Tuple(x - a.x, y - a.y, z - a.z, w - a.w);
+	return Tuple(mbrX - argOther.mbrX, mbrY - argOther.mbrY, mbrZ - argOther.mbrZ, mbrW - argOther.mbrW);
 };
 Tuple Tuple::negate()
 {
-	return Tuple(-x, -y, -z, -w);
+	return Tuple(-mbrX, -mbrY, -mbrZ, -mbrW);
 };
-float Tuple::magnitude()
+double Tuple::magnitude() const
 {
-	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2) + pow(w, 2));
+	return sqrt(pow(mbrX, 2) + pow(mbrY, 2) + pow(mbrZ, 2) + pow(mbrW, 2));
 }
-double Tuple::dot(Tuple a)
+const double Tuple::dot(const Tuple &argOther) const
 {
-	return (x * a.x + y * a.y + z * a.z);
+	return ((mbrX * argOther.mbrX) + (mbrY * argOther.mbrY) + (mbrZ * argOther.mbrZ) + (mbrW * argOther.mbrW));
 };
+Tuple Tuple::reflect(Tuple normal)
+{
+	return subtract(normal * 2.0 * dot(normal));
+}
+bool Tuple::checkEqual(const Tuple &argOther)
+{
+	Comparinator varComp = Comparinator();
+	return varComp.checkTuple(*this, argOther);
+}
+void Tuple::renderConsole() const {
+    std::cout << "Tuple::renderConsole() -> (";
+    std::cout << " mbrX:" << mbrX;
+    std::cout << ", mbrY:" << mbrY;
+    std::cout << ", mbrZ:" << mbrZ;
+    std::cout << ", mbrW:" << mbrW << std::endl;
+}
 
-
-Point::Point() : Tuple(0, 0, 0, 1.0) {};
+Point::Point() : Tuple(0.0, 0.0, 0.0, 1.0) {};
 Point::Point(double argx, double argy, double argz) : Tuple(argx, argy, argz, 1.0) {};
-Point Point::operator+(Tuple a)
+Point Point::operator+(const Tuple &argOther)
 {
-	return Point(a.x + x, a.y + y, a.z + z);;
+	return Point(argOther.mbrX + mbrX, argOther.mbrY + mbrY, argOther.mbrZ + mbrZ);;
 }
-Point Point::subtract(Tuple a)
+Vector Point::operator-(const Point &argOther)
 {
-	return Point(x - a.x, y - a.y, z - a.z);
+	return Vector(mbrX-argOther.mbrX, mbrY-argOther.mbrY, mbrZ-argOther.mbrZ);;
+}
+Point Point::subtract(const Tuple &argOther)
+{
+	return Point(mbrX - argOther.mbrX, mbrY - argOther.mbrY, mbrZ - argOther.mbrZ);
 }
 
-Vector::Vector() : Tuple(0, 0, 0, 0.0) {};
+Vector::Vector() : Tuple(0.0, 0.0, 0.0, 0.0) {};
 Vector::Vector(double argx, double argy, double argz) : Tuple(argx, argy, argz, 0.0) {};
-Vector Vector::operator+(Tuple a)
+Vector Vector::operator+(const Tuple &argOther)
 {
-	return Vector(a.x + x, a.y + y, a.z + z);;
+	return Vector(argOther.mbrX + mbrX, argOther.mbrY + mbrY, argOther.mbrZ + mbrZ);;
 }
 Vector Vector::operator-()
 {
-	return Vector(-x, -y, -z);
+	return Vector(-mbrX, -mbrY, -mbrZ);
 }
-Vector Vector::operator*(float multiple)
+const Vector Vector::operator*(double multiple) const
 {
-	return Vector(x * multiple, y * multiple, z * multiple);
+	return Vector(mbrX * multiple, mbrY * multiple, mbrZ * multiple);
 }
-Vector Vector::subtract(Tuple a)
+Vector Vector::subtract(const Tuple &argOther) const
 {
-	return Vector(x - a.x, y - a.y, z - a.z);
+	return Vector(mbrX - argOther.mbrX, mbrY - argOther.mbrY, mbrZ - argOther.mbrZ);
 }
 Vector Vector::normalize()
 {
-	return Vector(x / magnitude(), y / magnitude(), z / magnitude());
+	// double varX = magnitude() == 0 ? 0 : mbrX / magnitude();
+	// double varY = magnitude() == 0 ? 0 : mbrY / magnitude();
+	// double varZ = magnitude() == 0 ? 0 : mbrZ / magnitude();
+	// return Vector(varX, varY, varZ);
+	Comparinator varComp = Comparinator();
+	double varMagnitude = magnitude();
+	return varComp.checkFloat(varMagnitude, 0) ? Vector(0.0,0.0,0.0) : Vector(mbrX/varMagnitude, mbrY/varMagnitude, mbrZ/varMagnitude);
 };
-Vector Vector::cross(Vector a)
+Vector Vector::cross(const Vector &argOther)
 {
-	return Vector(y * a.z - z * a.y, z * a.x - x * a.z, x * a.y - y * a.x);
+	return Vector(mbrY * argOther.mbrZ - mbrZ * argOther.mbrY, mbrZ * argOther.mbrX - mbrX * argOther.mbrZ, mbrX * argOther.mbrY - mbrY * argOther.mbrX);
 };
+Vector Vector::reflect(Vector normal)
+{
+	return subtract(normal * 2.0 * dot(normal));
+}
