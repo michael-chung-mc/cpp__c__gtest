@@ -199,7 +199,7 @@ public:
         varObj.setTransform(argSphereTransform);
         varObj.setMaterial(argSphereMaterial);
         varEnv.setObject(new Sphere(varObj));
-        Canvas img = varCamera.render(varEnv);
+        Canvas img = varCamera.renderCanvas(varEnv);
         img.save();
     }
     void cameraRenderPlane(ViewMatrix argView, double argScreenHeight, double argScreenWidth, double argFov, PointSource argLight, Matrix argObjTransform, Material argObjMaterial)
@@ -213,7 +213,7 @@ public:
         varObj->setTransform(argObjTransform);
         varObj->setMaterial(argObjMaterial);
         varEnv.setObject(varObj.get());
-        Canvas img = varCamera.render(varEnv);
+        Canvas img = varCamera.renderCanvas(varEnv);
         img.save();
     }
     void cameraRenderRoom()
@@ -277,7 +277,7 @@ public:
         varWallSouth.setMaterial(Material(varWallMaterial));
         varEnv.setObject(std::make_unique<Plane>(varWallSouth).get());
 
-        Canvas img = varCamera.render(varEnv);
+        Canvas img = varCamera.renderCanvas(varEnv);
         img.save();
     }
 

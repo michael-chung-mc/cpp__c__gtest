@@ -84,7 +84,7 @@ Ray Camera::getRay(int argPxX, int argPxY)
     return Ray(varOrigin, varDirection);
 }
 
-Canvas Camera::render(World &argWorld)
+Canvas Camera::renderCanvas(World &argWorld)
 {
     int varCounterLimit = 1000;
     Canvas varCanvas = Canvas(mbrCanvasHorizontal, mbrCanvasVertical);

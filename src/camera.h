@@ -24,8 +24,7 @@ public:
     Camera& operator=(const Camera &argOther);
     Camera& operator=(Camera &&argOther) noexcept;
     Ray getRay(int argPxX, int argPxY);
-    Canvas render(World &argWorld);
-    // void setTransform (Matrix *argMatrix);
+    Canvas renderCanvas(World &argWorld);
     void setTransform (std::unique_ptr<Matrix>argMatrix);
 };
 

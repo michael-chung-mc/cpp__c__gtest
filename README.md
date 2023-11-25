@@ -1,4 +1,4 @@
-# wip__cpp__c__gtest
+# cpp__c__gtest
 <a name="readme-top"></a>
 <details>
     <summary>Table of Contents</summary>

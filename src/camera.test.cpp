@@ -85,7 +85,7 @@ TEST_F(CameraTest, CameraRenderDefaultWorld)
     Camera varCamera = Camera(11, 11, getPI()/2);
     // varCamera.setTransform(new ViewMatrix(Point(0,0,-5), Point(0,0,0), Vector(0,1,0)));
     varCamera.setTransform(std::make_unique<ViewMatrix>(Point(0,0,-5), Point(0,0,0), Vector(0,1,0)));
-    Canvas varImg = varCamera.render(varWorld);
+    Canvas varImg = varCamera.renderCanvas(varWorld);
     Color varExpectedColor = Color(0.38066, 0.47583, 0.2855);
     EXPECT_TRUE(varImg.getPixel(5,5).checkEqual(varExpectedColor));
 }

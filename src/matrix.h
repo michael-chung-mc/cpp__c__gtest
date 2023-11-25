@@ -11,10 +11,9 @@ class Vector;
 
 class Matrix {
 public:
-	// double **mbrGrid;
-	std::vector<std::vector<double>> mbrGrid;
-	int mbrRows;
-	int mbrColumns;
+	std::vector<std::vector<double>> _fieldGrid;
+	int _fieldRows;
+	int _fieldColumns;
 	Matrix();
 	Matrix(int rows, int columns);
 	Matrix(const Matrix& other);
