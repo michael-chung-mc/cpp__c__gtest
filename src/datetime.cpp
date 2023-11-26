@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "datetime.h"
+
 std::string DateTime::getNowFormatted() {
 	std::time_t now = std::time(nullptr);
 	std::tm ltm = *std::localtime(&now);
